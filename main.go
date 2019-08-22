@@ -41,8 +41,11 @@ func getKubernetesClient() kubernetes.Interface {
 func main() {
 	// get the Kubernetes client for connectivity
 	client := getKubernetesClient()
+	argsWithoutProg := os.Args[1:]
 
-	namespace := meta_v1.NamespaceDefault
+	// namespace := meta_v1.NamespaceDefault
+	// modified by sean landry, github@opensean to accept namespace as command line arg
+	namespace := argsWithoutProg[0]
 
 	// create the informer so that we can not only list resources
 	// but also watch them for all pods in the default namespace
